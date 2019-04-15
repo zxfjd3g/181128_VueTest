@@ -27,6 +27,65 @@
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
 
+  const p = {
+    firstName: 'A',
+    lastName: 'B'
+  }
+  /*
+  给p添加一个属性: fullName: firstName-lastName
+  1. 它值由firstName和lastName动态组成, 只要更新firstName/lastName, fullName随之更新
+  2. 如果修改了fullName, firstName/lastName同步变化
+   */
+  // p.fullName = p.firstName + '-' + p.lastName   // 直接添加属性的方式不可以
+
+  // Object.defineProperty(obj, prop, descriptor)
+  Object.defineProperty(p, 'fullName', {
+
+    // 当读取属性值自动调用, 用来返回属性值, this就是属性所属的对象
+    get () { // getter
+      console.log('get()')
+      return this.firstName + '-' + this.lastName
+    },
+
+    // 当给属性设置了新的值自动调用, 用来属性值的变化, this就是属性所属的对象
+    set (value) { // setter
+      console.log('set()', value)
+      const names = value.split('-')
+      this.firstName = names[0]
+      this.lastName = names[1]
+    }
+  })
+
+
+  console.log(p.fullName, p)
+
+  p.firstName = 'C'
+  p.lastName = 'D'
+  console.log(p.fullName) // C-D
+//
+  p.fullName = 'E-F'
+  console.log(p.firstName, p.lastName) // E F
+
+
+/*
+函数:
+  作为函数使用: fn()
+  作为对象使用: fn.      函数对象: 将函数作为对象使用时
+
+属性与方法
+  方法是一个特别的属性, 属性值是函数
+
+回调函数
+  1. 什么函数?
+      1). 你定义的
+      2). 你没有调用
+      3). 但最终执行了(在后面的某个时刻或者某个条件下)
+  2. 关于回调函数相关的3个问题
+      1). 什么时候调用
+      2). 用来做什么的
+      3). this是谁
+
+ */
 </script>
 </body>
 </html>
