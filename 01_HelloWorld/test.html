@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01_HelloWorld</title>
+</head>
+<body>
+
+<!--
+  1. 引入Vue.js
+  2. 创建Vue对象
+    el : 指定根element(选择器)
+    data : 初始化数据(页面可以访问)
+  3. 双向数据绑定 : v-model
+  4. 显示数据 : {{xxx}}
+  5. 理解vue的mvvm实现
+-->
+
+<!--
+模板页面: html + js   View
+  指令: vue自定义的标签属性(以v-开头)  v-model
+  插值/大括号表达式: 显示数据(只能写在标签体文本中)  {{msg}}
+
+(单向)数据绑定: 界面根据data中的数据动态显示, 只要更新data中的数据界面就会自动更新
+双向数据绑定: 单向数据绑定 + DOM监听(将页面中最新的值保存到data中对应的属性上)    v-model
+-->
+<div id="test">
+  <input type="text" v-model="msg">
+  <p>Hello {{msg}}</p>
+</div>
+
+<div id="test2"></div>
+
+<p>{{msg}}</p>
+
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  // Vue的实例就ViewModel
+  const vm = new Vue({ // 配置对象: 属性名是特定的一些名称
+    el: '#test', // element  指定模板的根元素
+    data: { // 为模板提供数据的对象   Model
+      msg: 'atguigu'
+    }
+  })
+
+  new Vue({
+    el: '#test2'
+  })
+
+  // a()()[0]()
+
+</script>
+</body>
+</html>
