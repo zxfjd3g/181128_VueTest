@@ -29,14 +29,58 @@
     @click='xxx'
 -->
 
+<!--
+区别语句与表达式
+  1). 有分号必然是语句, 没有分号可能是语句/表达式
+  2). 表达式是有返回值(得到一个数据, 可能是undefined), 语句没有(做一个特定的事)
+  3). 语句是一条完整的指令, 表达不是
+  4). 表达式一般是语句一个组成部分
+
+模板中能直接读取的是vm的属性
+只要vue控制的回调函数, this都是vm
+-->
+
 <div id="app">
   <h2>1. 双大括号表达式</h2>
+  <p>{{msg}}</p>
+  <p>{{msg.toUpperCase()}}</p>
 
   <h2>2. 指令一: 强制数据绑定</h2>
+  <a href="url">去学习</a>
+  <a v-bind:href="url">去学习</a>
+  <a :href="url">去学习</a>
 
   <h2>3. 指令二: 绑定事件监听</h2>
+  <button v-on:click="test1">test1</button>
+  <button @click="test1">test2</button>
 
 </div>
+
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  const vm = new Vue({
+    el: '#app',
+    data: { // vue自动给vm添加对应的属性
+      msg: 'I Will Back!',
+      url: 'http://www.atguigu.com'
+    },
+    methods: {
+      test1 (event) {
+        alert(event.target.textContent + '--' + this.msg)
+      }
+    }
+  })
+  console.log(vm.url, vm) //  http://www.atguigu.com
+  vm.url = 'http://www.baidu.com'
+
+  /*function fn() {
+    if () {
+
+    }
+  }*/
+
+</script>
 
 </body>
 </html>
