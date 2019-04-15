@@ -9,10 +9,60 @@
 1. 列表过滤
 2. 列表排序
 -->
+<div id="demo">
+  <input type="text" v-model="searchName">
+  <ul>
+    <li v-for="(person, index) in filterPersons" :key="person.id">
+      {{index}}--{{person.id}}--{{person.name}}--{{person.age}}
+    </li>
+  </ul>
+  <div>
+    <button @click="orderType=1">年龄升序</button>
+    <button @click="orderType=2">年龄降序</button>
+    <button @click="orderType=0">原本顺序</button>
+  </div>
+</div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el: '#demo',
+    data: {
+      searchName: '', // 搜索名
+      orderType: 0, // 0: 不排序, 1: 升序, 2: 降序
+      persons: [
+        {id: 1, name: 'Tom', age: 18},
+        {id: 3, name: 'Jack', age: 20},
+        {id: 5, name: 'Rose', age: 17},
+        {id: 7, name: 'Bob', age: 19},
+        {id: 8, name: 'Jerry', age: 21},
+      ]
+    },
 
+    computed: {
+      filterPersons () {
+        // 得到相关的已有数据
+        const {searchName, persons, orderType} = this
+        // 计算处理
+          // 过滤
+        const arr = persons.filter((p, index) => p.name.indexOf(searchName)!==-1 )
+          // 排序
+        if(orderType!==0) {
+          arr.sort((p1, p2) => { // 如果大于0, 将右边的换到左边去
+            if(orderType===1) { // 升序
+              return p1.age - p2.age
+            } else { // 降序
+              return p2.age - p1.age
+            }
+          })
+        }
+
+
+        // 返回结果
+        return arr
+      }
+    }
+  })
 </script>
 </body>
 </html>
