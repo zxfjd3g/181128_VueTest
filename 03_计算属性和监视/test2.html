@@ -22,6 +22,14 @@
   姓名1(单向): <input type="text" placeholder="Full Name1" v-model="fullName1"><br>
   姓名2(单向): <input type="text" placeholder="Full Name2" v-model="fullName2"><br>
   姓名3(双向): <input type="text" placeholder="Full Name3" v-model="fullName3"><br>
+
+  <p>{{fullName1}}</p>
+  <p>{{fullName1}}</p>
+  <p>{{fullName1}}</p>
+  <p>{{fullName2}}</p>
+  <p>{{fullName3}}</p>
+  <p>{{fullName3}}</p>
+  <p>{{fullName3}}</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
@@ -72,6 +80,34 @@
     // 更新fullName2
     this.fullName2 = this.firstName + '-' + value
   })
+
+
+  /*
+  数据容器
+    1. 对象
+      属性值才是我们要存的数据
+      属性名是数据的标识名称, 根据标识名来操作数据
+    2. 数组
+      数组中的元素就是我们要存的数据
+      元素的下标就是数据的标识名称, 根据标识名来操作数据
+ 选择哪种容器
+    一般有序的用数组, 不强调顺序的用对象
+    如果需要根据标识数据查找数据对象, 用对象容器比用数组容器效率高
+   */
+
+  /*
+  const users = [user1, user2, user3]
+  const users2 = {
+      [user1.id]:user1,
+      [user2.id]:user2,
+      [user3.id]:user3,
+    }
+  根据用户id查找对应的用户:
+    如果是数组:  遍历查找
+    如果是对象: id = 2; users2[id]
+
+
+   */
 </script>
 </body>
 </html>
