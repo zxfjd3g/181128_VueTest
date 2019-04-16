@@ -30,25 +30,57 @@
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  
+  /*
+  1. 初始化
+      create: beforeCreate() / created()
+      mount: beforeMount() / mounted()
+  2. 更新
+      update: beforeUpdate() / updated()
+  3. 死亡
+      destroy: beforeDestroy() / destroyed()
+   */
   const vm = new Vue({
     // el: '#test',
     data: {
       isShow: true
     },
-
+    
+    beforeCreate() {
+      console.log('beforeCreate()')
+    },
+    created() {
+      console.log('created()')
+    },
+    beforeMount() {
+      console.log('beforeMount()')
+    },
     // 执行异步任务: 发ajax请求/启动定时器
     mounted () {
+      console.log('mounted()')
       // 启动循环定时器
       this.intervalId = setInterval(() => {
         console.log('------')
         this.isShow = !this.isShow
       }, 1000)
     },
-
+    
+    beforeUpdate() {
+      console.log('beforeUpdate()')
+    },
+    updated() {
+      console.log('updated()')
+    },
+    
     // 做一些收尾工作
     beforeDestroy () {
+      console.log('beforeDestroy()')
       // 清除定时器
       clearInterval(this.intervalId)
+    },
+
+    destroyed() {
+      console.log('destroyed()')
     },
 
     methods: {
