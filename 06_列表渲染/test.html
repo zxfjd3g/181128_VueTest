@@ -32,7 +32,6 @@
       {{key}}--{{value}}
     </li>
   </ul>
-
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
@@ -51,7 +50,7 @@
         {id: 5, name: 'Rose', age: 17},
         {id: 7, name: 'Bob', age: 19},
         {id: 8, name: 'Jerry', age: 21},
-      ]
+      ],
     },
 
     methods: {
@@ -60,11 +59,13 @@
       },
 
       updateP (index, newP) {
-        this.persons[index] = newP // vue不知道数组内部变化了
+        console.log(this)
+        this.persons[index].name = 'xxx'
+        // this.persons[index] = newP // vue不知道数组内部变化了
         // this.persons = []
-        this.persons.splice(index, 1, newP)
+        // this.persons.splice(index, 1, newP)
       }
-    }
+    },
   })
 
 </script>

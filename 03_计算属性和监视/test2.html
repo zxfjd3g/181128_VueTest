@@ -23,13 +23,10 @@
   姓名2(单向): <input type="text" placeholder="Full Name2" v-model="fullName2"><br>
   姓名3(双向): <input type="text" placeholder="Full Name3" v-model="fullName3"><br>
 
-  <p>{{fullName1}}</p>
-  <p>{{fullName1}}</p>
-  <p>{{fullName1}}</p>
-  <p>{{fullName2}}</p>
-  <p>{{fullName3}}</p>
-  <p>{{fullName3}}</p>
-  <p>{{fullName3}}</p>
+  <p>{{fullName4()}}</p>
+  <p>{{fullName4()}}</p>
+  <p>{{fullName4()}}</p>
+
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
@@ -46,12 +43,15 @@
       // 初始显示/相关数据发生了变化时自动调用, 返回属性值, this是vm
       fullName1 () {
         console.log('fullName1()')
+        /*setTimeout(() => {
+          return this.firstName + '-' + this.lastName
+        }, 1000)*/
         return this.firstName + '-' + this.lastName
       },
 
       fullName3: {
         get () {
-          console.log('fullName3 get()')
+          console.log('fullName3 get()', this)
           return this.firstName + '-' + this.lastName
         },
 
@@ -65,12 +65,21 @@
       }
     },
 
+    methods: {
+      fullName4 () {
+        console.log('fullName4()')
+        return this.firstName + '-' + this.lastName
+      }
+    },
+
     // 指定监视vm的哪些属性变化
     watch: {
       // 监视firstName
       firstName (value) { // firstName的值发生了改变时调用
-        // 更新fullName2
-        this.fullName2 = value + '-' + this.lastName
+       setTimeout(() => {
+         // 更新fullName2
+         this.fullName2 = value + '-' + this.lastName
+       }, 1000)
       }
     }
   })
@@ -90,9 +99,9 @@
     2. 数组
       数组中的元素就是我们要存的数据
       元素的下标就是数据的标识名称, 根据标识名来操作数据
- 选择哪种容器
-    一般有序的用数组, 不强调顺序的用对象
-    如果需要根据标识数据查找数据对象, 用对象容器比用数组容器效率高
+    3. 选择哪种容器
+      一般有序的用数组, 不强调顺序的可用对象
+      如果需要根据标识数据查找数据对象, 用对象容器比用数组容器效率高
    */
 
   /*

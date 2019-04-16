@@ -50,7 +50,7 @@
 	利用set/get方法来实现属性数据的计算读取, 同时监视属性数据的变化
 	如何给对象定义get/set属性
 		在创建对象时指定: get name () {return xxx} / set name (value) {}
-	  	对象创建之后指定: Object.defineProperty(obj, age, {get(){}, set(value){}})
+	  对象创建之后指定: Object.defineProperty(obj, age, {get(){}, set(value){}})
 
 ## 5). watch
 	包含多个属性监视的对象

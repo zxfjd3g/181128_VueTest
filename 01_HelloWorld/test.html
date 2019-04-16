@@ -39,8 +39,14 @@
   // Vue的实例就ViewModel
   const vm = new Vue({ // 配置对象: 属性名是特定的一些名称
     el: '#test', // element  指定模板的根元素
-    data: { // 为模板提供数据的对象   Model
+    /*data: { // 为模板提供数据的对象   Model
       msg: 'atguigu'
+    }*/
+    data () {
+
+      return {
+        msg: 'atguigu'
+      }
     }
   })
 
